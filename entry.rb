@@ -254,6 +254,9 @@ mCodes.each{|mCode|
 
   doc = Nokogiri::HTML.parse(html, nil, charset)
 
+  a0 = doc.xpath("//*[@id='stockinfo_i1']/div[1]/h2").inner_text
+  p a0
+
   a1 = doc.xpath("//*[@id='kobetsu_left']/table[1]/tbody/tr[1]/td[1]").inner_text
   p a1
 
@@ -288,6 +291,7 @@ mCodes.each{|mCode|
 
 
   # スプレッドシートへの書き込み
+  sheets[startRow,2] = a0 #企業名
   sheets[startRow,3] = a1 #始値
   sheets[startRow,4] = a2 #高値
   sheets[startRow,5] = a3 #高値(時刻)

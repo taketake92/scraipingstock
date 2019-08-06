@@ -7,6 +7,8 @@ require 'CSV'
 session = GoogleDrive::Session.from_config("config.json")
 
 mCodes = [
+
+  4689,
 '0000',
 2002,
 2269,
@@ -314,25 +316,25 @@ startRow = 5 #行
 
   #始値
   a1 = doc.xpath("//*[@id='kobetsu_left']/table[1]/tbody/tr[1]/td[1]").inner_text
-  a1 = a1.size == 3 ? a1 : a1.delete!(",")
+  a1 = a1.include?(",") ? a1.delete!(",") : a1
   p a1
 
   a2 = doc.xpath('//*[@id="kobetsu_left"]/table[1]/tbody/tr[2]/td[1]').inner_text
-  a2 = a2.size == 3 ? a2 : a2.delete!(",")
+  a2 = a2.include?(",") ? a2.delete!(",") : a2
   p a2
 
   a3 = doc.xpath('//*[@id="kobetsu_left"]/table[1]/tbody/tr[2]/td[3]').inner_text.delete!("(,)")
   p a3
 
   a4 = doc.xpath('//*[@id="kobetsu_left"]/table[1]/tbody/tr[3]/td[1]').inner_text
-  a4 = a4.size == 3 ? a4 : a4.delete!(",")
+  a4 = a4.include?(",") ? a4.delete!(",") : a4
   p a4
 
   a5 = doc.xpath('//*[@id="kobetsu_left"]/table[1]/tbody/tr[3]/td[3]').inner_text.delete!("(,)")
   p a5
 
   a6 = doc.xpath('//*[@id="kobetsu_left"]/table[1]/tbody/tr[4]/td[1]').inner_text
-  a6 = a6.size == 3 ? a6 : a6.delete!(",")
+  a6 = a6.include?(",") ? a6.delete!(",") : a6
   p a6
 
   a7 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[1]/td').inner_text.gsub("\u00A0", "")
@@ -344,9 +346,11 @@ startRow = 5 #行
   p a8
 
   a9 = doc.xpath('//*[@id="stockinfo_i1"]/div[2]/dl/dd[1]/span').inner_text
+  a9 = a9.empty? ? "0" : a9.include?(",") ? a9.delete!(",") : a9
   p a9
 
   a10 = doc.xpath('//*[@id="stockinfo_i1"]/div[2]/dl/dd[2]/span').inner_text
+  a10 = a10.empty? ? "0" : a10.include?(",") ? a10.delete!(",") : a10
   p a10
 
   a11 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[3]/td').inner_text.gsub("\u00A0", "")
@@ -386,7 +390,7 @@ startRow = 5 #行
 
 
 
-  test = CSV.open("#{mCode}.csv","w") do |csv|
+  test = CSV.open("#{mCode}.csv","a") do |csv|
     ##翌日wをaに変えて上書き#
 
   csv << [
@@ -408,6 +412,6 @@ startRow = 5 #行
 
 end
 
-sleep(3)
+sleep(1)
 
 }
