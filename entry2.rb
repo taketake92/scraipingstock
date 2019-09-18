@@ -467,6 +467,20 @@ mCodes = [
 9889,
 6195,
 
+# 20199月高沢銘柄
+3912,
+3914,
+4428,
+4431,
+3997,
+6552,
+3137,
+3446,
+3454,
+# 3482,
+3682,
+3901,
+
 
 ]
 
@@ -475,9 +489,9 @@ a = 0
 
 mCodes.each{|mCode|
 
-# https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxxx/
-# 事前に書き込みたいスプレッドシートを作成し、上記スプレッドシートのURL(「xxx」の部分)を以下のように指定する
-# sheets = session.spreadsheet_by_key("1F3EzCs0gDOsizeTqqBWwh94YBipEb0-d5-6lktuH01s").worksheets[a]
+  # https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxxx/
+  # 事前に書き込みたいスプレッドシートを作成し、上記スプレッドシートのURL(「xxx」の部分)を以下のように指定する
+  # sheets = session.spreadsheet_by_key("1F3EzCs0gDOsizeTqqBWwh94YBipEb0-d5-6lktuH01s").worksheets[a]
 
 
 
@@ -537,6 +551,7 @@ mCodes.each{|mCode|
 
   a11 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[3]/td').inner_text.gsub("\u00A0", "")
   a11 = a11.include?(",") ? a11.delete!(",") : a11
+  p a11
 
   a12 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[4]/td').inner_text.gsub("\u00A0", "")
   a12 = a12.include?(",") ? a12.delete!(",") : a12
@@ -579,7 +594,7 @@ mCodes.each{|mCode|
   csv << [
           mCode.to_s,
           # Date.today.strftime("%Y-%m-%d"),
-          "2019-09-17",
+          "2019-09-18",
           a1,
           a2,
           a3,
@@ -592,12 +607,13 @@ mCodes.each{|mCode|
           a10,
           a11,
           a12,
+          a13,
         ]
 
-end
+  end
 
-c = rand(10..16)
+  c = rand(10..16)
 
-sleep(c)
+  sleep(c)
 
 }
