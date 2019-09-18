@@ -596,7 +596,7 @@ mCodes.each{|mCode|
 
 end
 
-c = rand(10..12)
+c = rand(10..16)
 
 sleep(c)
 
