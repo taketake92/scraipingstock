@@ -6,7 +6,7 @@ require 'CSV'
 
 session = GoogleDrive::Session.from_config("config.json")
 
-id = "1Te_GkxAfVH7EEjoJ66yQNy0ruHDqn59IhPOUgSn0d5c"
+id = "1pprcR9zmCro7VzEYc4TreHnVv7FStbmQS3Dl-HB2RTs"
 
 p "nnnnnnn"
 
@@ -18,12 +18,12 @@ p sheets
 
 mCodes = [
 '0000',
-# 2002,
-# 2269,
-# 2282,
-# 2501,
-# 2502,
-# 2503,
+2002,
+2269,
+2282,
+2501,
+2502,
+2503,
 # 2531,
 # 2801,
 # 2802,
@@ -641,8 +641,6 @@ mCodes.each{|mCode|
   # シートの保存
   # sheets.save
 
-  id = "17cBDCZ5Xxf3w2fPy0fG60_4A5HEpYc0Ws24fPj56GTU"
-
   p "nnnnnnn"
 
   #https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxxx/
@@ -651,9 +649,9 @@ mCodes.each{|mCode|
 
   p "gggggggg"
 
-  # UpdateCount = CSV.open("./#{mCode}.csv").count + 2
+  UpdateCount = CSV.open("./#{mCode}.csv").count + 2
 
-  p "aaaaaa"
+  p UpdateCount
 
 
   #スプレッドシートへの書き込み
@@ -669,8 +667,8 @@ mCodes.each{|mCode|
   sheets[UpdateCount,11] = a8 #終値
   sheets[UpdateCount,12] = a9 #出来高
   sheets[UpdateCount,13] = a13 #売買代金
-  sheets[UpdateCount,14] = a14 #約定回数
-  sheets[UpdateCount,15] = a15 #時価総額
+  sheets[UpdateCount,14] = a12 #約定回数
+  sheets[UpdateCount,15] = a13 #時価総額
 
   test = CSV.open("#{mCode}.csv","a") do |csv|
     ##aデータ更新#

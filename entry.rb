@@ -9,26 +9,45 @@ session = GoogleDrive::Session.from_config("config.json")
 sheets = session.spreadsheet_by_key("1IUyY4mHmAwSBkNJks9WbpIAlGKI4foQM9BfyNgAzl4c").worksheets[0]
 
 mCodes=[
-'0000',
+1332,
+1333,
+1605,
+1721,
+1801,
+1802,
+1803,
+1808,
+1812,
+1925,
+1928,
+1963,
 2002,
 2269,
 2282,
+2432,
 2501,
 2502,
 2503,
 2531,
+2768,
 2801,
 2802,
 2871,
 2914,
+3086,
+3099,
 3101,
 3103,
+3105,
+3289,
+3382,
 3401,
 3402,
-3861,
-3863,
 3405,
 3407,
+3436,
+3861,
+3863,
 4004,
 4005,
 4021,
@@ -36,23 +55,30 @@ mCodes=[
 4043,
 4061,
 4063,
+4151,
 4183,
 4188,
 4208,
 4272,
+4324,
 4452,
-4631,
-4901,
-4911,
-4151,
 4502,
 4503,
 4506,
 4507,
 4519,
 4523,
+4543,
 4568,
 4578,
+4631,
+4689,
+4704,
+4751,
+4755,
+4901,
+4902,
+4911,
 5019,
 5020,
 5101,
@@ -69,7 +95,7 @@ mCodes=[
 5406,
 5411,
 5541,
-3436,
+5631,
 5703,
 5706,
 5707,
@@ -80,9 +106,10 @@ mCodes=[
 5802,
 5803,
 5901,
-5631,
+6098,
 6103,
 6113,
+6178,
 6301,
 6302,
 6305,
@@ -92,10 +119,6 @@ mCodes=[
 6471,
 6472,
 6473,
-7004,
-7011,
-7013,
-3105,
 6479,
 6501,
 6503,
@@ -119,12 +142,12 @@ mCodes=[
 6971,
 6976,
 6988,
-7735,
-7751,
-7752,
-8035,
 7003,
+7004,
+7011,
 7012,
+7013,
+7186,
 7201,
 7202,
 7203,
@@ -135,43 +158,28 @@ mCodes=[
 7269,
 7270,
 7272,
-4543,
-4902,
 7731,
 7733,
+7735,
+7751,
+7752,
 7762,
 7832,
 7911,
 7912,
 7951,
-1332,
-1333,
-1605,
-1721,
-1801,
-1802,
-1803,
-1808,
-1812,
-1925,
-1928,
-1963,
-2768,
 8001,
 8002,
 8015,
+8028,
 8031,
+8035,
 8053,
 8058,
-3086,
-3099,
-3382,
-8028,
 8233,
 8252,
+8253,
 8267,
-9983,
-7186,
 8303,
 8304,
 8306,
@@ -191,8 +199,6 @@ mCodes=[
 8750,
 8766,
 8795,
-8253,
-3289,
 8801,
 8802,
 8804,
@@ -216,26 +222,18 @@ mCodes=[
 9432,
 9433,
 9437,
-9613,
-9984,
 9501,
 9502,
 9503,
 9531,
 9532,
-2432,
-4324,
-4689,
-4704,
-4751,
-4755,
-6098,
-6178,
 9602,
+9613,
 9681,
 9735,
 9766,
-3990,
+9983,
+9984,
 ]
 
 startRow = 2
@@ -275,8 +273,8 @@ mCodes.each{|mCode|
   a6 = doc.xpath('//*[@id="kobetsu_left"]/table[1]/tbody/tr[4]/td[1]').inner_text
   p a6
 
-  a7 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[1]/td').inner_text
-  p a7
+  a7 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[1]/td').inner_text.gsub("\u00A0", "")
+  a7 = a7.include?(",") ? a7.delete!(",") : a7
 
   a8 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[2]/td').inner_text
   p a8
@@ -287,26 +285,37 @@ mCodes.each{|mCode|
   a10 = doc.xpath('//*[@id="stockinfo_i1"]/div[2]/dl/dd[2]/span').inner_text
   p a10
 
+  a11 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[7]/td').inner_text.gsub("\u00A0", "")
+  a11 = a11.include?(",") ? a11.delete!(",") : a11
+  p a11
 
+  a13 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[7]/td').inner_text.gsub("\u00A0", "")
+  a13 = a13.include?(",") ? a13.delete!(",") : a13
+  p a13
 
+  a12 = doc.xpath('//*[@id="kobetsu_left"]/table[2]/tbody/tr[4]/td').inner_text.gsub("\u00A0", "")
+  a12 = a12.include?(",") ? a12.delete!(",") : a12
+  p a12
 
-  スプレッドシートへの書き込み
-  sheets[startRow,2] = a0 #企業名
-  sheets[startRow,3] = a1 #始値
-  sheets[startRow,4] = a2 #高値
-  sheets[startRow,5] = a3 #高値(時刻)
-  sheets[startRow,6] = a4 #安値
-  sheets[startRow,7] = a5 #安値(時刻)
-  sheets[startRow,8] = a6 #終値
-  sheets[startRow,9] = a7 #出来高
-  sheets[startRow,10] = a8 #売買代金
-  sheets[startRow,11] = a9 #前日比(数値)
-  sheets[startRow,12] = a10 #前日比(数値)
+  #スプレッドシートへの書き込み
+  # sheets[startRow,3] = a0 #企業名
+  # sheets[startRow,4] = a1 #始値
+  # sheets[startRow,5] = a2 #高値
+  # sheets[startRow,6] = a3 #高値(時刻)
+  # sheets[startRow,7] = a4 #安値
+  # sheets[startRow,8] = a5 #安値(時刻)
+  sheets[startRow,4] = a6 #終値
+  sheets[startRow,5] = a7 #出来高
+  sheets[startRow,6] = a12 #約定回数
+  # sheets[startRow,5] = a8 #売買代金
+  # sheets[startRow,6] = a9 #前日比(数値)
+  # sheets[startRow,7] = a10 #前日比(数値)
+  sheets[startRow,7] = a13 #時価総額
 
   startRow += 1
 
-シートの保存
+#シートの保存
 sheets.save
 
-sleep(10)c
+sleep(5.6)
 }
