@@ -17,7 +17,7 @@ mCodes.each{|mCode|
   #テンプレート読み込み
   templeate_sheets = ""
   copy_sheets = ""
-  templeate_sheets = session.spreadsheet_by_key("1cQbEb0RtlTE1aSn21qwJ_fzyrX5D_aRojtXXENMAopM")
+  templeate_sheets = session.spreadsheet_by_key("1iWczYgaNpbmdB_mxS2W_X7KsWuuTWfTV3_O9y6XbtzM")
   #テンプレート作成
   p mCode
   copy_sheets = templeate_sheets.copy("#{mCode}test")

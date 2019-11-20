@@ -1,0 +1,28 @@
+irb(main):4119:0* mCodes.each{|mCode|
+irb(main):4120:1*
+irb(main):4121:1*   url = "https://kabutan.jp/stock/?code=#{mCode}"
+irb(main):4122:1>
+irb(main):4123:1*
+irb(main):4124:1*   charset = nil
+irb(main):4125:1>
+irb(main):4126:1*     html = open(url) do |f|
+irb(main):4127:2*       charset = f.charset
+irb(main):4128:2>       f.read
+irb(main):4129:2>     end
+irb(main):4130:1>
+irb(main):4131:1*
+irb(main):4132:1*   doc = Nokogiri::HTML.parse(html, nil, charset)
+irb(main):4133:1>   MInfo = doc.xpath("//*[@id='kobetsu_right']/div[4]/table/tbody/tr[3]/td").inner_text
+irb(main):4134:1>   MEvent = doc.xpath("//*[@id='kobetsu_right']/div[4]/table/tbody/tr[5]/td/ul").inner_text.gsub("\r\n                ", ",")
+irb(main):4135:1>
+irb(main):4136:1*   MEvent2 = MEvent.gsub(",","\r\n")
+irb(main):4137:1>
+irb(main):4138:1*
+irb(main):4139:1*   CSV.open("../meigara_data.csv","a") do |csv|
+irb(main):4140:2*     csv << [mCode,MInfo,MEvent]
+irb(main):4141:2>   end
+irb(main):4142:1>
+irb(main):4143:1*   CSV.open("../meigara_data2.csv","a") do |csv|
+irb(main):4144:2*     csv << [MEvent2]
+irb(main):4145:2>   end
+irb(main):4146:1> }

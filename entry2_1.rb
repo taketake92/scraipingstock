@@ -35,8 +35,13 @@ p mCode
 copy_sheets = templeate_sheets.copy("#{mCode}test")
 #テンプレートのid取得
 sheet_id = copy_sheets.id
+
+p sheet_id
+
 #テンプレートでシートインスタンス
 sheets = session.spreadsheet_by_key(sheet_id).worksheets[0]
+
+p sheets
 
 
   # https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxxx/
@@ -137,7 +142,7 @@ sheets = session.spreadsheet_by_key(sheet_id).worksheets[0]
 
   #https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxxx/
   #事前に書き込みたいスプレッドシートを作成し、上記スプレッドシートのURL(「xxx」の部分)を以下のように指定する
-  sheets = session.spreadsheet_by_key(id).worksheets[0]
+  sheets = session.spreadsheet_by_key(sheet_id).worksheets[0]
 
   aaa = CSV.open("./#{mCode}.csv").count + 2
 
