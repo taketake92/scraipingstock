@@ -5,7 +5,7 @@ require 'open-uri'
 
 
 Slack.configure do |config|
-  config.token = 'xoxb-594546582053-861117833618-xfVZo4yVEHMrQ7Q9dFpwIlbA'
+  config.token = 'xoxb-594546582053-861117833618-9KF6SBPlv3MJVDDsFdDOArzN'
 end
 
 #F&gindex取得

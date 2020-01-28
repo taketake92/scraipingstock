@@ -353,7 +353,7 @@ mCodes.each{|mCode|
 
   # https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxxxxxxx/
   # 事前に書き込みたいスプレッドシートを作成し、上記スプレッドシートのURL(「xxx」の部分)を以下のように指定する
-  sheets = session.spreadsheet_by_key("1Sw1AlOXEZ6HCnnN-NnPduIrDpi7u3zOaLf7k_wCyaDo").worksheets[1]
+  sheets = session.spreadsheet_by_key("1KBbdzO6TnZ2w1m5f1xN-YXNolliR5pUx1hWmAE7bBzg").worksheets[1]
   # sheets = session.spreadsheet_by_key("1IUyY4mHmAwSBkNJks9WbpIAlGKI4foQM9BfyNgAzl4c").worksheets[0]
 
   p mCode
