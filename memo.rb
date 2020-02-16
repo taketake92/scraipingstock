@@ -1,0 +1,64 @@
+require "google_drive"
+require 'nokogiri'
+require 'open-uri'
+require 'date'
+require 'CSV'
+
+mCodes = [
+
+9984,
+
+]
+
+session = GoogleDrive::Session.from_config("config.json")
+
+mCodes.each{|mCode|
+  #テンプレートからコピーして新規にsheet作成
+  #テンプレート読み込み
+  templeate_sheets = ""
+  copy_sheets = ""
+  templeate_sheets = session.spreadsheet_by_key("1iWczYgaNpbmdB_mxS2W_X7KsWuuTWfTV3_O9y6XbtzM")
+  #テンプレート作成
+  p mCode
+  copy_sheets = templeate_sheets.copy("#{mCode}test")
+  #テンプレートのid取得
+  sheet_id = copy_sheets.id
+  #テンプレートでシートインスタンス
+  sheets = session.spreadsheet_by_key(sheet_id).worksheets[0]
+
+  row = 3
+  CSV.foreach("../#{mCode}.csv") do |line|
+
+  	sheets[row,1] = line[0] #銘柄コード
+  	sheets[row,2] = line[1] #日付
+  	sheets[row,3] = line[10] #前日比
+  	sheets[row,4] = line[11] #前日比(㌫)
+  	sheets[row,5] = line[2] #始値
+  	sheets[row,7] = line[3] #高値
+  	sheets[row,8] = line[4] #高値(時刻)
+  	sheets[row,9] = line[5] #安値
+  	sheets[row,10] = line[6] #安値(時刻)
+  	sheets[row,11] = line[7] #終値
+  	sheets[row,12] = line[8] #出来高
+  	sheets[row,13] = line[9] #売買代金
+  	sheets[row,14] = line[13] #約定回数
+  	sheets[row,15] = line[14] #時価総額
+  	row += 1
+
+  end
+  sheets.save
+
+  test = CSV.open("../SpreetheetsIdInfo.csv","a") do |csv|
+  csv << [
+        mCode,
+        sheet_id,
+        ]
+  end
+
+
+}
+
+
+#file_info.num_rows
+#ファイルの最終行の行番号取得
+

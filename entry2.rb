@@ -601,6 +601,8 @@ mCodes = [
 6666,
 6706,
 6777,
+
+
 6778,
 6779,
 6800,
@@ -781,6 +783,9 @@ mCodes = [
 
 4475,
 
+1563,
+2516,
+
 
 ]
 
@@ -894,7 +899,7 @@ mCodes.each{|mCode|
   csv << [
           mCode.to_s,
           # Date.today.strftime("%Y-%m-%d"),
-          "2020-01-27",
+          "2020-02-14",
           a1,
           a2,
           a3,
@@ -912,7 +917,7 @@ mCodes.each{|mCode|
 
   end
 
-  c = rand(3..9)
+  c = rand(1..14)
 
   sleep(c)
 

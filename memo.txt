@@ -1,13 +1,13 @@
+require "google_drive"
+require 'nokogiri'
+require 'open-uri'
+require 'date'
+require 'CSV'
+
 mCodes = [
 
-'0000',
-2002,
-2269,
-2282,
-2501,
-2502,
-2503,
-2531,
+9984,
+
 ]
 
 session = GoogleDrive::Session.from_config("config.json")
@@ -26,7 +26,7 @@ mCodes.each{|mCode|
   #テンプレートでシートインスタンス
   sheets = session.spreadsheet_by_key(sheet_id).worksheets[0]
 
-  row = 2
+  row = 3
   CSV.foreach("../#{mCode}.csv") do |line|
 
   	sheets[row,1] = line[0] #銘柄コード
