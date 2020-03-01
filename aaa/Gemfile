@@ -33,6 +33,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'roo'
+gem 'spreadsheet'
+gem 'rubyXL'
+
 gem 'google_drive'
 gem 'csv'
 
