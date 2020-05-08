@@ -856,6 +856,19 @@ mCodes.each{|mCode|
   a13 = a13.include?(",") ? a13.delete!(",") : a13
   p a13
 
+  #信用売買日時
+  a14 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/th/time").inner_text
+  p a14
+  #売り残
+  a15 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/td[1]").inner_text
+  p a15
+  #買い残
+  a16 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/td[2]").inner_text
+  p a16
+  #倍率
+  a17 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/td[3]").inner_text
+  p a17
+
 
   # スプレッドシートへの書き込み
   # # sheets[startRow,1] = Date.today.strftime("%Y/%m/%d") #日付
@@ -889,7 +902,7 @@ mCodes.each{|mCode|
   csv << [
           mCode.to_s,
           Date.today.strftime("%Y-%m-%d"),
-          # "2020-03-10",
+          # "2020-05-08",
           a1,
           a2,
           a3,
@@ -903,6 +916,10 @@ mCodes.each{|mCode|
           a11,
           a12,
           a13,
+          a14,
+          a15,
+          a16,
+          a17,
         ]
 
   end
