@@ -7,7 +7,7 @@ require 'CSV'
 session = GoogleDrive::Session.from_config("config.json")
 
 mCodes = [
-'0000',
+# '0000',
 2002,
 2269,
 2282,
