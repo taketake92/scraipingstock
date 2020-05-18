@@ -35,7 +35,7 @@ CSV.foreach("./SpreetheetsIdInfo.csv") do |data|
   	sheets[row,9] = line[5] #安値
   	sheets[row,10] = line[6] #安値(時刻)
   	sheets[row,11] = line[7] #終値
-  	sheets[row,12] = line[8] #出来高
+  	sheets[row,12] = line[8].delete!("株") #出来高
   	sheets[row,13] = line[9] #売買代金
   	sheets[row,14] = line[13] #約定回数
   	sheets[row,15] = line[14] #時価総額
@@ -63,7 +63,7 @@ CSV.foreach("./SpreetheetsIdInfo.csv") do |data|
 
   rs[rsRow,1] = ws['A1']
   rs[rsRow,2] = ws['B1']
-  rs[rsRow,7] = ws['C1']
+  # rs[rsRow,7] = ws['C1']
   rs[rsRow,8] = ws['D1']
   rs[rsRow,9] = ws['E1']
   rs[rsRow,10] = ws['F1']
@@ -148,14 +148,16 @@ CSV.foreach("./SpreetheetsIdInfo.csv") do |data|
   rs[rsRow,83] = ws['E7']
   rs[rsRow,84] = ws['F7']
 
+  rs[rsRow,85] = data[1]
+
 
   rsRow+= 1
 
   rs.save
 
-  c = rand(1..3)
+  # c = rand(1..3)
 
-  sleep(c)
+  # sleep(c)
 
 end
 

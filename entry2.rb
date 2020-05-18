@@ -7,7 +7,12 @@ require 'CSV'
 session = GoogleDrive::Session.from_config("config.json")
 
 mCodes = [
-# '0000',
+'0000', #日経平均
+'0010', #TOPIX
+'0012', #マザーズ指数
+'0100', #日系JASDAQ
+'0800', #NYダウ
+'0802', #NASDAQ
 2002,
 2269,
 2282,
@@ -858,15 +863,19 @@ mCodes.each{|mCode|
 
   #信用売買日時
   a14 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/th/time").inner_text
+  a14 = a14.include?(",") ? a14.delete!(",") : a14
   p a14
   #売り残
   a15 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/td[1]").inner_text
+  a15 = a15.include?(",") ? a15.delete!(",") : a15
   p a15
   #買い残
   a16 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/td[2]").inner_text
+  a16 = a16.include?(",") ? a16.delete!(",") : a16
   p a16
   #倍率
   a17 = doc.xpath("//*[@id='kobetsu_left']/table[3]/tbody/tr[1]/td[3]").inner_text
+  a17 = a17.include?(",") ? a17.delete!(",") : a17
   p a17
 
 
