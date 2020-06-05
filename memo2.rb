@@ -6,7 +6,7 @@ require 'CSV'
 
 session = GoogleDrive::Session.from_config("config.json")
 
-rsRow = 390
+rsRow = 443
 
 id = "1dWGVF8kMglGzRpHoAfOM_3l5BAYJX0baJAb2cW_tgnk"
 rs = session.spreadsheet_by_key(id).worksheet_by_title("シート1")
@@ -155,7 +155,7 @@ CSV.foreach("./SpreetheetsIdInfo.csv") do |data|
 
   rs.save
 
-  # c = rand(1..3)
+  c = rand(1..2)
 
   # sleep(c)
 
