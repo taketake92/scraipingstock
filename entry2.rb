@@ -995,7 +995,7 @@ mCodes.each{|mCode|
   csv << [
           mCode.to_s,
           Date.today.strftime("%Y-%m-%d"),
-          # "2020-06-26",
+          # "2020-07-01",
           a1,
           a2,
           a3,
@@ -1017,8 +1017,8 @@ mCodes.each{|mCode|
 
   end
 
-  c = rand(3..8.7)
-
-  sleep(c)
+  c = rand(1..3)
+  #
+  # sleep(c)
 
 }
